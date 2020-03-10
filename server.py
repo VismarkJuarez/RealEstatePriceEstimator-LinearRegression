@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 import pandas as pd
 import numpy as np
+import json
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
@@ -53,3 +54,10 @@ def perform_linear_regression():
 def index():
     perform_linear_regression()
     return 'Hello world'
+
+
+@app.route('/post', methods=['POST'])
+def consumeUserInput():
+    receivedDataAsJSON = request.get_json()
+    print('received data is: {}'.format(receivedDataAsJSON))
+    return 'SUCCESS!'
