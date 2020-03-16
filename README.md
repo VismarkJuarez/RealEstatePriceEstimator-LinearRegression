@@ -13,7 +13,15 @@ $ python3 -m venv venv
 $ source venv/bin/activate
 $ pip install --upgrade pip
 ```
-### 3). You may now run the application by running the following command:
+
+
+### 3). Install all project dependencies by running the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4). You may now run the application by running the following command:
 
 ```bash
  $ env FLASK_APP=server.py flask run
