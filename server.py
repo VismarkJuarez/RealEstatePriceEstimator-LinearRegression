@@ -24,7 +24,7 @@ def perform_linear_regression():
     X = df[['Avg. Area Income', 'Avg. Area House Age', 'Avg. Area Number of Rooms',
        'Avg. Area Number of Bedrooms', 'Area Population']]
 
-    #Storing the colum for the target variable (what we're trying to predict -- i.e., the `Price`)
+    #Storing the column for the target variable (what we're trying to predict -- i.e., the `Price`)
     y = df[['Price']]
 
     '''
@@ -33,13 +33,13 @@ def perform_linear_regression():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=101)
 
     #instantiating a LinearRegression object
-    lm = LinearRegression()
+    linearRegressionModel = LinearRegression()
 
     #fitting the model using the attributes and the target values
-    lm.fit(X_train, y_train)
+    linearRegressionModel.fit(X_train, y_train)
 
     #making an actual prediction using the trained model
-    predictions = lm.predict(X_test)
+    predictions = linearRegressionModel.predict(X_test)
 
     #graphing the predictions vs. actual:
     #plt.scatter(y_test, predictions)
@@ -47,7 +47,6 @@ def perform_linear_regression():
     #predicting on a hard-coded entry:
     #print('X_test is: \n')
     #print(X_test.head())
-
 
 
 @app.route('/', methods=['GET'])
