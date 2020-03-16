@@ -67,7 +67,7 @@ def index():
 Expecting a `dict` holding the consumed propertyData.  This will be parsed into
 a Property object and returned.
 '''
-def deserializePropertyData(propertyDataJson: dict):
+def deserializePropertyData(propertyDataJson: dict) -> Property:
     averageAreaIncome = propertyDataJson["averageAreaIncome"]
     averageAreaNumberOfRooms = propertyDataJson["averageAreaNumberOfRooms"]
     averageAreaHouseAge = propertyDataJson["averageAreaHouseAge"]
