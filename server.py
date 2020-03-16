@@ -45,8 +45,15 @@ def perform_linear_regression():
     #plt.scatter(y_test, predictions)
 
     #predicting on a hard-coded entry:
-    #print('X_test is: \n')
-    #print(X_test.head())
+    print('X_test is: \n')
+    print(X_test.head())
+
+    print('X_test prediction results: \n')
+    print(predictions)
+
+
+#Runs the linear regression model function at start up
+perform_linear_regression()
 
 
 @app.route('/', methods=['GET'])
@@ -55,7 +62,19 @@ def index():
     return 'Hello world'
 
 
-@app.route('/post', methods=['POST'])
+'''
+Will receive data in the following JSON format:
+
+{
+  "averageAreaIncome": 200000,
+  "averageAreaNumberOfRooms": 6,
+  "averageAreaHouseAge": 120,
+  "averageAreaNumberOfBedrooms": 3,
+  "areaPopulation": 234000
+}
+
+'''
+@app.route('/predictPrice', methods=['POST'])
 def consumeUserInput():
     receivedDataAsJSON = request.get_json()
     print('received data is: {}'.format(receivedDataAsJSON))
