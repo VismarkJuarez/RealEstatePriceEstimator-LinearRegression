@@ -2,6 +2,7 @@ from flask import Flask, request
 import pandas as pd
 import numpy as np
 import json
+from Property import Property
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
@@ -63,6 +64,20 @@ def index():
 
 
 '''
+Expecting a `dict` holding the consumed propertyData.  This will be parsed into
+a Property object and returned.
+'''
+def deserializePropertyData(propertyDataJson: dict):
+    averageAreaIncome = propertyDataJson["averageAreaIncome"]
+    averageAreaNumberOfRooms = propertyDataJson["averageAreaNumberOfRooms"]
+    averageAreaHouseAge = propertyDataJson["averageAreaHouseAge"]
+    averageAreaNumberOfBedrooms = propertyDataJson["averageAreaNumberOfBedrooms"]
+    areaPopulation = propertyDataJson["areaPopulation"]
+
+    property = Property(averageAreaIncome, averageAreaNumberOfRooms, averageAreaHouseAge, averageAreaNumberOfBedrooms, areaPopulation)
+    return property
+
+'''
 Will receive data in the following JSON format:
 
 {
@@ -78,4 +93,5 @@ Will receive data in the following JSON format:
 def consumeUserInput():
     receivedDataAsJSON = request.get_json()
     print('received data is: {}'.format(receivedDataAsJSON))
+    property = deserializePropertyData(receivedDataAsJSON)
     return 'SUCCESS!'

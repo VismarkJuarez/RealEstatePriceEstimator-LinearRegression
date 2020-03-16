@@ -18,5 +18,3 @@ class Property:
         self.averageAreaHouseAge = averageAreaHouseAge
         self.averageAreaNumberOfBedrooms = averageAreaNumberOfBedrooms
         self.areaPopulation = areaPopulation
-
-
