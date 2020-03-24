@@ -39,3 +39,16 @@ Your output will look as below:
  * Debug mode: off
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
+## Running the application in Windows...
+```bash
+python3 -m venv venv
+```
+```bash
+venv\scripts\activate.bat
+```
+```bash
+set FLASK_APP=server.py
+```
+```bash
+flask run
+```
