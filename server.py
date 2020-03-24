@@ -5,8 +5,16 @@ import json
 from Property import Property
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
+cors = CORS(app, resources={
+    r"/*": {
+        "origins": "*"
+    }
+})
 
 #instantiating a LinearRegression object
 linearRegressionModel = LinearRegression()
@@ -120,6 +128,7 @@ def consumeUserInput():
     print('received data is: {}'.format(receivedDataAsJSON))
     property = deserializePropertyData(receivedDataAsJSON)
     estimate = predictPriceEstimate(property)
+    print('returning: {}'.format(estimate))
 
     #Return the estimated price, as a JSON formatted string
     return "{ " + "estimate: {}".format(estimate) + " }"
