@@ -18,9 +18,10 @@ cors = CORS(app, resources={
 
 #instantiating a LinearRegression object
 linearRegressionModel = LinearRegression()
+df = pd.read_csv('resources/USA_Housing.csv') #Read in the USA_Housing.csv file, located within the `/resources` folder
 
 def perform_linear_regression():
-    df = pd.read_csv('resources/USA_Housing.csv') #Read in the USA_Housing.csv file, located within the `/resources` folder
+    #df = pd.read_csv('resources/USA_Housing.csv') #Read in the USA_Housing.csv file, located within the `/resources` folder
     print(df.info()) #printing info to the console.
 
     print(df.columns) #printing all of the column labels (attribute names).
@@ -130,5 +131,43 @@ def consumeUserInput():
     estimate = predictPriceEstimate(property)
     print('returning: {}'.format(estimate))
 
+    #TODO The following line is added purely for experimental purposes:
+    retrieveSimilarEstimates(estimate)
+
     #Return the estimated price, as a JSON formatted string
     return "{ " + "estimate: {}".format(estimate) + " }"
+
+
+'''
+Returns data in the following format: 
+{
+    "rows": [
+        {
+            "Avg. Area Income": 37971.20757,
+            "Avg. Area House Age": 4.291223903,
+            "Avg. Area Number of Rooms": 5.807509527,
+            "Avg. Area Number of Bedrooms": 3.24,
+            "Area Population": 33267.76773,
+            "Price": 31140.51762,
+            "Address": "98398 Terrance Pines\nSouth Joshua, MT 00544-8919"
+        },
+        {
+            "Avg. Area Income": 47320.65721,
+            "Avg. Area House Age": 3.55805376,
+            "Avg. Area Number of Rooms": 7.006987009,
+            "Avg. Area Number of Bedrooms": 3.16,
+            "Area Population": 15776.6186,
+            "Price": 15938.65792,
+            "Address": "91410 Megan Camp Suite 360\nLaurafort, OH 15735"
+        }
+    ]  
+}
+
+'''
+@app.route('/predictPrice/<float:price>', methods=['GET'])
+def retrieveSimilarEstimates(price):
+    #recordsWithSimilarPrices = df.loc[(df['column_name'] >= A) & (df['column_name'] <= B)]
+    recordsWithSimilarPrice = df.loc[(df['Price'] >= (price - 50000)) & (df['Price'] <= (price) + 50000)]
+    print(recordsWithSimilarPrice)
+    #return ("this is the price received: {}".format(price))
+    return  "{ rows: " + recordsWithSimilarPrice.to_json(orient='records') + " }"
