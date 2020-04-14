@@ -168,6 +168,10 @@ Returns data in the following format:
 def retrieveSimilarEstimates(price):
     #Determines how much of a price deviation constitutes as "similarly priced"
     DEVIATION_FROM_PRICE = 50000
-    recordsWithSimilarPrice = df.loc[(df['Price'] >= (price - DEVIATION_FROM_PRICE)) & (df['Price'] <= (price) + DEVIATION_FROM_PRICE)]
-    print(recordsWithSimilarPrice)
-    return  "{ rows: " + recordsWithSimilarPrice.to_json(orient='records') + " }"
+
+    #variable for specifying how many similarlly-priced records to show
+    NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW = 10
+    allRecordsWithSimilarPrice = df.loc[(df['Price'] >= (price - DEVIATION_FROM_PRICE)) & (df['Price'] <= (price) + DEVIATION_FROM_PRICE)]
+    firstFewRecordsWithSimilarPrice = allRecordsWithSimilarPrice.head(NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW)
+    print(firstFewRecordsWithSimilarPrice)
+    return  "{ rows: " + firstFewRecordsWithSimilarPrice.to_json(orient='records') + " }"
