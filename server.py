@@ -164,10 +164,10 @@ Returns data in the following format:
 }
 
 '''
-@app.route('/predictPrice/<float:price>', methods=['GET'])
+@app.route('/similarlyPricedRecords/<float:price>', methods=['GET'])
 def retrieveSimilarEstimates(price):
-    #recordsWithSimilarPrices = df.loc[(df['column_name'] >= A) & (df['column_name'] <= B)]
-    recordsWithSimilarPrice = df.loc[(df['Price'] >= (price - 50000)) & (df['Price'] <= (price) + 50000)]
+    #Determines how much of a price deviation constitutes as "similarly priced"
+    DEVIATION_FROM_PRICE = 50000
+    recordsWithSimilarPrice = df.loc[(df['Price'] >= (price - DEVIATION_FROM_PRICE)) & (df['Price'] <= (price) + DEVIATION_FROM_PRICE)]
     print(recordsWithSimilarPrice)
-    #return ("this is the price received: {}".format(price))
     return  "{ rows: " + recordsWithSimilarPrice.to_json(orient='records') + " }"
