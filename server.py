@@ -164,14 +164,16 @@ Returns data in the following format:
 }
 
 '''
+
+#TODO: Ensure the top 10 records returned are the closest to the estimated price
 @app.route('/similarlyPricedRecords/<float:price>', methods=['GET'])
 def retrieveSimilarEstimates(price):
     #Determines how much of a price deviation constitutes as "similarly priced"
-    DEVIATION_FROM_PRICE = 50000
+    DEVIATION_FROM_PRICE = 10000
 
     #variable for specifying how many similarlly-priced records to show
-    NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW = 10
+    NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW = 20
     allRecordsWithSimilarPrice = df.loc[(df['Price'] >= (price - DEVIATION_FROM_PRICE)) & (df['Price'] <= (price) + DEVIATION_FROM_PRICE)]
     firstFewRecordsWithSimilarPrice = allRecordsWithSimilarPrice.head(NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW)
     print(firstFewRecordsWithSimilarPrice)
-    return  "{ rows: " + firstFewRecordsWithSimilarPrice.to_json(orient='records') + " }"
+    return  "{ \"rows\": " + firstFewRecordsWithSimilarPrice.to_json(orient='records') + " }"
