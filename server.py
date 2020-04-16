@@ -172,7 +172,7 @@ def retrieveSimilarEstimates(price):
     DEVIATION_FROM_PRICE = 10000
 
     #variable for specifying how many similarlly-priced records to show
-    NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW = 20
+    NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW = 10
     allRecordsWithSimilarPrice = df.loc[(df['Price'] >= (price - DEVIATION_FROM_PRICE)) & (df['Price'] <= (price) + DEVIATION_FROM_PRICE)]
     firstFewRecordsWithSimilarPrice = allRecordsWithSimilarPrice.head(NUMBER_OF_SIMILARLY_PRICED_RECORDS_TO_SHOW)
     print(firstFewRecordsWithSimilarPrice)
