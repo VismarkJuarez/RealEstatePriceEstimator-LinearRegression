@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Real Estate Price Estimator</title>
+
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Charts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type="text/javascript" src="jscript/graph.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" id="navBar">
+      <a class="navbar-brand" href="#">Real Estate Price Estimator</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-tabs" aria-controls="navbar-tabs" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="navbar-tabs" class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="">SEARCH</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">ABOUT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">CONTACT</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <!-- Masthead -->
+    <div id="masthead">
+      <div id="porchImage">
+        <img src="resources/porchImage.jfif" alt="Italian Trulli">
+      </div>
+      <div id="bannerMessage">
+        <p id="bannerText">CLICK SEARCH TO GET STARTED!</p>
+      </div>
+      <div class="divider">
+        <img src="resources/star-white.png" alt="">
+      </div>
+    </div>
+
+    <!-- Search Section -->
+    <section class="searchSection">
+      <p id="searchHeading">SEARCH</p>
+      <div class="divider">
+        <img src="resources/star-black.png" alt="">
+      </div>
+
+      <!-- Search Form -->
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+
+          <form novalidate="novalidate">
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="averageAreaIncome" class="form-control" id="income" type="text" placeholder="Average Area Income" required="required" data-validation-required-message="Please enter average area income.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="averageAreaNumberOfRooms" class="form-control" id="num_of_rooms" type="text" placeholder="Average Area Number of Rooms" required="required" data-validation-required-message="Please enter average area number of rooms.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="averageAreaHouseAge" class="form-control" id="age" type="text" placeholder="Average Area House Age" required="required" data-validation-required-message="Please enter average house age.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="avgAreaNumberOfBedrooms" class="form-control" id="bedrooms" type="text" placeholder="Average Area Number of Bedrooms" required="required" data-validation-required-message="Please enter average area number of bedrooms.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="areaPopulation" class="form-control" id="population" type="text" placeholder="Area Population" required="required" data-validation-required-message="Please enter population.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary btn-xl submitButton" id="myButton" type="button" name="button">SEARCH</button>
+
+    <p id="priceEstimate"></p>
+
+    <section class="tableSection">
+      <table id="similarRecordsTable">
+        <tr>
+          <th class="tableHeader">Avg Area Income</th>
+          <th class="tableHeader">Avg Area House Age</th>
+          <th class="tableHeader">Avg Number of Rooms</th>
+          <th class="tableHeader">Avg Area Number of Bedrooms</th>
+          <th class="tableHeader">Area Population</th>
+          <th class="tableHeader">Price</th>
+          <th class="tableHeader">Address</th>
+        </tr>
+        <!-- This table will be populated by Javascript -->
+      </table>
+    </section>
+
+    <div class="chartCanvasDiv">
+        <canvas id="estimate-results-canvas"></canvas>
+    </div>
+
+    <section id="aboutSection">
+      <div class="container1">
+
+        <!-- About Section Heading -->
+        <p class="page-section-heading text-center text-uppercase text-white">About</p>
+
+        <!-- Icon Divider -->
+        <div class="divider">
+          <img src="resources/star-white.png" alt="">
+        </div>
+
+        <!-- About Section Content -->
+        <!-- source: https://towardsdatascience.com/introduction-to-machine-learning-algorithms-linear-regression-14c4e325882a -->
+        <div class="row">
+          <div class="col-lg-4 ml-auto">
+            <p class="lead aboutText">Simple linear regression is a type of regression analysis where the number of independent variables is one and there is a linear relationship between the independent(x) and dependent(y) variable. The red line in the above graph is referred to as the best fit straight line. Based on the given data points, we try to plot a line that models the points the best. The line can be modelled based on the linear equation shown below.</p>
+          </div>
+          <div class="col-lg-4 mr-auto">
+            <p class="lead aboutText" >The motive of the linear regression algorithm is to find the best values for a_0 and a_1. Before moving on to the algorithm, let’s have a look at two important concepts you must know to better understand linear regression.</p>
+          </div>
+        </div>
+
+        <!-- About Section Button -->
+        <div class="text-center mt-4">
+          <a class="btn btn-xl btn-outline-light" href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">
+            y = a_0 + a_1 * x
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Contact Us Section-->
+    <section class="contactUsSection">
+      <p id="searchHeading">CONTACT US</p>
+
+      <div class="divider">
+        <img src="resources/star-black.png" alt="">
+      </div>
+
+      <!-- Search Form -->
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <form novalidate="novalidate">
+            <div class="control-group">
+
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="name" class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="emailAddress" class="form-control" id="emailAddress" type="text" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="phoneNumber" class="form-control" id="phoneNumber" type="text" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input required name="message" class="form-control" id="message" type="text" placeholder="Message" required="required" data-validation-required-message="Please enter a message.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-xl submitButton" id="sendMessageButton" type="button" name="messageButton">SEND</button>
+
+    </section>
+  </body>
+
+  <footer class="footer">
+
+    <div class="container">
+        <div class="row">
+
+          <!-- Footer Location -->
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <h4 class="text-uppercase mb-4">Location</h4>
+            <p class="lead mb-0">1032 W Sheridan Rd
+              <br>Chicago, IL 60660</p>
+          </div>
+
+          <!-- Footer Social Icons -->
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <h4 class="text-uppercase mb-4">Around the Web</h4>
+            <a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/LoyolaChicago/" target="_blank">
+              <i class="fab fa-fw fa-facebook-f"></i>
+            </a>
+            <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/LoyolaChicago?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">
+              <i class="fab fa-fw fa-twitter"></i>
+            </a>
+            <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/school/loyola-university-chicago/" target="_blank">
+              <i class="fab fa-fw fa-linkedin-in"></i>
+            </a>
+            <a class="btn btn-outline-light btn-social mx-1" href="https://dribbble.com/" target="_blank">
+              <i class="fab fa-fw fa-dribbble"></i>
+            </a>
+          </div>
+
+          <!-- Footer About Text -->
+          <div class="col-lg-4">
+            <h4 class="text-uppercase mb-4">About Freelancer</h4>
+            <p class="lead mb-0">Freelance is a free to use, MIT licensed Bootstrap theme created by
+              <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+          </div>
+
+        </div>
+      </div>
+
+    <script src="js/index.js"></script>
+  </footer>
+</html>

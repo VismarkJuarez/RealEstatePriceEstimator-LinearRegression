@@ -1,0 +1,122 @@
+
+#masthead {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  width: 100%;
+  background-color: #62c4a0;
+  text-align: center;
+}
+
+.submitButton {
+  background-color: #62c4a0;
+}
+
+.myClass {
+  position: fixed;
+}
+
+#porchImage {
+  padding-top: 100px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 30px;
+}
+
+#bannerMessage {
+  font-size: 80px;
+}
+
+#bannerText {
+  padding-top: 50px;
+  color: white;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.divider {
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.searchSection {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+  font-size: 80px
+}
+
+#searchHeading {
+  padding-top: 50px;
+  color: #091310;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+#searchForm {
+  text-align: center;
+}
+
+.textInput {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#submitButton {
+  margin: auto;
+  display: block;
+}
+
+#aboutSection {
+  background-color: #62c4a0;
+}
+
+.aboutHeading {
+  padding-top: 50px;
+  font-size: 200px
+  color: white;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.aboutText {
+  color: white;
+}
+
+#similarRecordsTable {
+  margin-left:auto;
+  margin-right:auto;
+  font-size:15px;
+  padding: 5px;
+  border: 1px dotted black;
+}
+
+.tableHeader {
+  border: 1px dotted black;
+}
+
+.tableSection
+{
+  display:none;
+}
+
+tr {
+  border: 1px dotted black;
+}
+
+td {
+  border: 1px dotted black;
+}
+
+.footer {
+  background-color: #2F4F4F;
+  color:white;
+}
