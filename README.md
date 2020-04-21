@@ -41,7 +41,7 @@ Your output will look as below:
 ```
 ## Running the application in Windows...
 ```bash
-python3 -m venv venv
+python -m venv venv
 ```
 ```bash
 venv\scripts\activate.bat
